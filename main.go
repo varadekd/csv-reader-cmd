@@ -68,6 +68,7 @@ func main() {
 	fmt.Println("Enter column=value to filter or press Enter to see the first 10 entries:")
 	var columnFilter string
 	fmt.Scanln(&columnFilter) // Wait for user input
+	fmt.Printf("\n\n")
 
 	// Prepare data for filtering
 	var filteredRecords []Record
@@ -83,7 +84,7 @@ func main() {
 	if columnFilter != "" {
 		parts := strings.SplitN(columnFilter, "=", 2)
 		if len(parts) != 2 {
-			fmt.Println("Invalid filter format. Use <column>=<value>.")
+			fmt.Println("\nInvalid filter format. Use <column>=<value>.")
 			return
 		}
 
@@ -100,7 +101,7 @@ func main() {
 		}
 
 		if columnIndex == -1 {
-			fmt.Printf("Column name '%s' not found.\n", columnName)
+			fmt.Printf("\n Column name '%s' not found.\n", columnName)
 			return
 		}
 
@@ -114,6 +115,7 @@ func main() {
 		filteredRecords = filtered
 		if len(filtered) == 0 {
 			fmt.Println("No matching records found.")
+			return
 		} else {
 			filteredRecords = filtered
 		}
@@ -128,7 +130,7 @@ func main() {
 	outputDir := "outputs"
 	err = os.MkdirAll(outputDir, os.ModePerm)
 	if err != nil {
-		fmt.Printf("Error creating output directory: %v\n", err)
+		fmt.Printf("\n Error creating output directory: %v\n", err)
 		return
 	}
 
